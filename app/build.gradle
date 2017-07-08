@@ -24,4 +24,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.android.support:design:25.0.1'
     compile 'de.hdodenhof:circleimageview:2.1.0'
+    compile files('libs/PhotoUtil.jar')
+    compile files('libs/sqliteassethelper-2.0.1.jar')
 }
