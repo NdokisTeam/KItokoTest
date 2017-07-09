@@ -48,9 +48,9 @@ public class CameraActivity extends AppCompatActivity {
 
         init();
 
-        //Desactive le btn camera s'il n'y a pas de camera
-        if (!hasCamera())
-            ivCamera.setEnabled(false);
+//        //Desactive le btn camera s'il n'y a pas de camera
+//        if (!hasCamera())
+//            ivCamera.setEnabled(false);
 
         //CAMERA
         ivCamera.setOnClickListener(new View.OnClickListener() {
