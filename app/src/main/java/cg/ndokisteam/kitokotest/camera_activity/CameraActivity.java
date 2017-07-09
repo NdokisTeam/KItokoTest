@@ -1,5 +1,6 @@
 package cg.ndokisteam.kitokotest.camera_activity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -29,8 +31,10 @@ public class CameraActivity extends AppCompatActivity {
 
     private final String TAG = this.getClass().getName();
 
-    ImageView ivCamera,ivGallerie;
+    ImageView ivCamera,ivGallerie,ic,ig;
     CircleImageView ivPhoto;
+    ImageButton DialogueMedia;
+    Dialog dialog;
 
     static final int REQUEST_CAMERA_IMAGE = 13323;
     final int GALLERY_REQUEST = 22131;
@@ -47,25 +51,36 @@ public class CameraActivity extends AppCompatActivity {
         galleryPhoto = new GalleryPhoto(getApplicationContext());
 
         init();
+        dialogueMedia();
 
 //        //Desactive le btn camera s'il n'y a pas de camera
 //        if (!hasCamera())
 //            ivCamera.setEnabled(false);
 
         //CAMERA
-        ivCamera.setOnClickListener(new View.OnClickListener() {
+        ic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Active la CAMERA
                 lanceCamera();
+                dialog.dismiss();
             }
         });
 
         //GALLERIE
-        ivGallerie.setOnClickListener(new View.OnClickListener() {
+        ig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivityForResult(galleryPhoto.openGalleryIntent(), GALLERY_REQUEST);
+                dialog.dismiss();
+            }
+        });
+
+        //Bouton Dialogue
+        DialogueMedia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.show(); //Affiche dialogue
             }
         });
 
@@ -108,9 +123,10 @@ public class CameraActivity extends AppCompatActivity {
 
     public void init()
     {
-        ivCamera= (ImageView) findViewById(R.id.ivCamera);
+        ivCamera= (ImageView) findViewById(R.id.ivCam);
         ivGallerie = (ImageView) findViewById(R.id.ivGallerie);
         ivPhoto = (CircleImageView) findViewById(R.id.ivImageUser);
+        DialogueMedia = (ImageButton) findViewById(R.id.ibDialogueMedia);
     }
 
     //Faire si user n'a pas de CAMERA
@@ -163,15 +179,21 @@ public class CameraActivity extends AppCompatActivity {
         }
     }
 
-    //    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if (requestCode==REQUEST_CAMERA_IMAGE && requestCode == RESULT_OK)
-//        {
-//            //get photo
-//            Bundle extras = data.getExtras();
-//            Bitmap photo = (Bitmap) extras.get("data");
-//            ivPhoto.setImageBitmap(photo);
-//        }
-//        super.onActivityResult(requestCode, resultCode, data);
-//    }
+    //Dialogue Creation
+    public void dialogueMedia()
+    {
+        dialog = new Dialog(this);
+        //titre
+        dialog.setTitle("Prendre une photo");
+        //Content
+        dialog.setContentView(R.layout.dialog_media);
+        ic = (ImageView) dialog.findViewById(R.id.ivCam);
+        ig = (ImageView) dialog.findViewById(R.id.ivGal);
+
+
+
+
+    }
+
+
 }
