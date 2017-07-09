@@ -11,7 +11,7 @@ import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
 public class MyHelper extends SQLiteAssetHelper {
 
-    private final static String DB_NAME = "kitokodb.db";
+    private final static String DB_NAME = "kitoko_db.db";
     private final static int DB_VERSION = 1;
 
 
