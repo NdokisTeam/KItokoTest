@@ -1,7 +1,7 @@
 package cg.ndokisteam.kitokotest;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import java.util.ArrayList;
 
+import cg.ndokisteam.kitokotest.camera_activity.CameraActivity;
 import cg.ndokisteam.kitokotest.data.MessageDao;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,18 +27,16 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        messageDao = new MessageDao(this);
-        list=messageDao.getAllMessages();
 
-        final String message = list.get(2).getMessage();
+
 
 
        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Test "+message, Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+               startActivity(new Intent(MainActivity.this,CameraActivity.class));
+                finish();
             }
         });
     }
