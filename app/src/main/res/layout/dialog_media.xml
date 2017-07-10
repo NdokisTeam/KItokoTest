@@ -9,7 +9,6 @@
     <RelativeLayout
         android:id="@+id/d"
         android:layout_width="match_parent"
-        android:background="@drawable/abc_dialog_material_background_light"
         android:layout_height="match_parent"
        android:paddingBottom="@dimen/activity_horizontal_margin">
 
