@@ -46,8 +46,8 @@
         android:layout_alignParentStart="true">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="125dp"
+            android:layout_height="125dp"
             app:civ_border_width="2dp"
             app:civ_border_color="@color/colorPrimary"
             android:src="@drawable/attach_camera"
