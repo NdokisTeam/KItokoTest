@@ -21,7 +21,7 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_camera" />
+    <include layout="@layout/custom_camera" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

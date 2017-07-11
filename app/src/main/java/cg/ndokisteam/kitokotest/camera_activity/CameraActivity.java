@@ -35,7 +35,7 @@ public class CameraActivity extends AppCompatActivity {
 
     private final String TAG = this.getClass().getName();
 
-    ImageView ivCamera,ivGallerie,ic,ig;
+    ImageView ic,ig;
     CircleImageView ivPhoto;
     ImageButton DialogueMedia;
     Dialog dialog;
@@ -52,7 +52,7 @@ public class CameraActivity extends AppCompatActivity {
 
     String nom;
     int sexe;
-    byte[] image;
+    byte[] images;
 
     static final int REQUEST_CAMERA_IMAGE = 13323;
     final int GALLERY_REQUEST = 22131;
@@ -70,11 +70,6 @@ public class CameraActivity extends AppCompatActivity {
 
         init();
         dialogueMedia();
-
-//        //Desactive le btn camera s'il n'y a pas de camera
-//        if (!hasCamera())
-//            ivCamera.setEnabled(false);
-
         //CAMERA
         ic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +103,24 @@ public class CameraActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendData();
+                //HOMME
+                images = imageViewToByte(ivPhoto);
+                nom = nomUser.getText().toString();
+
+                if ( mGroup.getCheckedRadioButtonId() == R.id.radio1)
+                {
+                    sexe = HOMME_ID;
+                    sendData(nom,sexe,images);
+                }
+
+                //FEMME
+                if ( mGroup.getCheckedRadioButtonId() == R.id.radio2)
+                {
+                    sexe = FEMME_ID;
+                    sendData(nom,sexe,images);
+
+                }
+
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -140,10 +152,9 @@ public class CameraActivity extends AppCompatActivity {
 
     public void init()
     {
-        ivCamera= (ImageView) findViewById(R.id.ivCam);
         DialogueMedia = (ImageButton) findViewById(R.id.ibDialogueMedia);
-
         nomUser = (EditText) findViewById(R.id.edName);
+        ivPhoto = (CircleImageView) findViewById(R.id.ivImageUser);
         mGroup = (RadioGroup) findViewById(R.id.group);
     }
 
@@ -210,31 +221,14 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     //Recuperation des donnees Utilisateur
-    private void sendData()
+    private void sendData(String n,int sexe,byte[]images)
     {
         Intent intent = new Intent(CameraActivity.this,ResultActivity.class);
-        image = imageViewToByte(ivPhoto);
-
-        if ( mGroup.getCheckedRadioButtonId() == R.id.radio1) //HOMME
-        {
-            nom = nomUser.getText().toString();
-            sexe = HOMME_ID;
-            intent.putExtra("NOM",nom);
+            intent.putExtra("NOM",n);
             intent.putExtra("SEXE",sexe);
-            intent.putExtra("IMAGE",image);
-
+            intent.putExtra("IMAGE",images);
             startActivity(intent);
-
-        }
-        if ( mGroup.getCheckedRadioButtonId() == R.id.radio2)
-        {   //FEMME
-            nom = nomUser.getText().toString();
-            sexe = FEMME_ID;
-            intent.putExtra("NOM",nom);
-            intent.putExtra("SEXE",sexe);
-            startActivity(intent);
-        }
-    }
+    }//fin
 
     //Compress de l'mage en Byte
 

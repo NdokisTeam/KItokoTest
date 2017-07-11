@@ -22,11 +22,7 @@ public class ResultActivity extends AppCompatActivity {
 
     TextView titre,acceuil,nomUser;
     ImageView photo;
-
-    //Attribut de l'utilisateur
-    String nom;
-    int sexe;
-    byte[] image;
+    int  sexe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +31,21 @@ public class ResultActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        init();
 
-        Intent intent = new Intent();
-        nom = intent.getExtras().getString("NOM");
-        sexe = intent.getExtras().getInt("SEXE");
-        image = intent.getExtras().getByteArray("IMAGE");
+        titre = (TextView) findViewById(R.id.tvTitreResultat);
+        acceuil = (TextView) findViewById(R.id.tvResultat2);
+        nomUser = (TextView) findViewById(R.id.tvNomUserResultat);
+        photo = (ImageView) findViewById(R.id.photoResult);
 
-       Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
-//        imageView.setImageBitmap(bitmap);
 
-        nomUser.setText(nom);
+        Intent intent = this.getIntent();
+        String nom = intent.getExtras().getString("NOM");
+       sexe = intent.getExtras().getInt("SEXE");
+       byte[] image = intent.getExtras().getByteArray("IMAGE");
+
+
+        nomUser.setText(nom.toUpperCase());
+        Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);//Decopression en Bitmap
         photo.setImageBitmap(bitmap);
 
 
@@ -91,14 +91,14 @@ public class ResultActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    //init methode
-    private void init()
-    {
-        titre = (TextView) findViewById(R.id.tvTitreResultat);
-        acceuil = (TextView) findViewById(R.id.tvResultat2);
-        nomUser = (TextView) findViewById(R.id.tvNomUserResultat);
-        photo = (ImageView) findViewById(R.id.photoResult);
-
-    }
+//    //init methode
+//    private void init()
+//    {
+//        titre = (TextView) findViewById(R.id.tvTitreResultat);
+//        acceuil = (TextView) findViewById(R.id.tvResultat2);
+//        nomUser = (TextView) findViewById(R.id.tvNomUserResultat);
+//        photo = (ImageView) findViewById(R.id.photoResult);
+//
+//    }
 
 }
