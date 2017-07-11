@@ -14,8 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.kosalgeek.android.photoutil.GalleryPhoto;
@@ -35,6 +37,18 @@ public class CameraActivity extends AppCompatActivity {
     CircleImageView ivPhoto;
     ImageButton DialogueMedia;
     Dialog dialog;
+
+    //Views de saisis
+
+    EditText nomUser;
+    private RadioGroup mGroup;
+
+    //Constantes pour les radioButton
+    final int HOMME_ID = 0;
+    final int FEMME_ID = 1;
+
+    String nom;
+    int sexe;
 
     static final int REQUEST_CAMERA_IMAGE = 13323;
     final int GALLERY_REQUEST = 22131;
@@ -90,8 +104,7 @@ public class CameraActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                sendData();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -127,6 +140,9 @@ public class CameraActivity extends AppCompatActivity {
         ivGallerie = (ImageView) findViewById(R.id.ivGallerie);
         ivPhoto = (CircleImageView) findViewById(R.id.ivImageUser);
         DialogueMedia = (ImageButton) findViewById(R.id.ibDialogueMedia);
+
+        nomUser = (EditText) findViewById(R.id.edName);
+        mGroup = (RadioGroup) findViewById(R.id.group);
     }
 
     //Faire si user n'a pas de CAMERA
@@ -190,9 +206,29 @@ public class CameraActivity extends AppCompatActivity {
         ic = (ImageView) dialog.findViewById(R.id.ivCam);
         ig = (ImageView) dialog.findViewById(R.id.ivGal);
 
+    }
 
+    //Recuperation des donnees Utilisateur
+    private void sendData()
+    {
+        Intent intent = new Intent(CameraActivity.this,ResultActivity.class);
+        if ( mGroup.getCheckedRadioButtonId() == R.id.radio1) //HOMME
+        {
+            nom = nomUser.getText().toString();
+            sexe = HOMME_ID;
+            intent.putExtra("NOM",nom);
+            intent.putExtra("SEXE",sexe);
+            startActivity(intent);
 
-
+        }
+        if ( mGroup.getCheckedRadioButtonId() == R.id.radio2)
+        {   //FEMME
+            nom = nomUser.getText().toString();
+            sexe = FEMME_ID;
+            intent.putExtra("NOM",nom);
+            intent.putExtra("SEXE",sexe);
+            startActivity(intent);
+        }
     }
 
 

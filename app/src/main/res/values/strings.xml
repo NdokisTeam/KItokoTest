@@ -3,4 +3,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_camera">CameraActivity</string>
     <string name="titre_acceuil">KITOKO TESTER</string>
+    <string name="entrez_votre_pr_nom_ici">Entrez votre prénom ici</string>
+    <string name="homme">Homme</string>
+    <string name="femme">Femme</string>
+    <string name="votre_photo">Votre photo</string>
+    <string name="title_activity_result">Kitoto Resultat</string>
 </resources>

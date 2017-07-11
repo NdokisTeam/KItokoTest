@@ -34,8 +34,8 @@
             android:layout_alignTop="@+id/ivCam"
             android:layout_toRightOf="@+id/ivCam"
             android:layout_toEndOf="@+id/ivCam"
-            android:layout_marginLeft="52dp"
-            android:layout_marginStart="52dp" />
+            android:layout_marginLeft="65dp"
+            android:layout_marginStart="70dp" />
     </RelativeLayout>
 
 </LinearLayout>

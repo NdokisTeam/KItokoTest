@@ -2,9 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cg.ndokisteam.kitokotest">
 
-    <uses-feature android:name="android.hardware.camera2" android:required="true"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <supports-screens
         android:anyDensity="true"
@@ -34,12 +37,21 @@
         <activity
             android:name=".camera_activity.CameraActivity"
             android:label="@string/title_activity_camera"
-            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cg.ndokisteam.kitokotest.MainActivity" />
+        </activity>
+        <activity
+            android:name=".camera_activity.ResultActivity"
+            android:label="@string/title_activity_result"
+            android:parentActivityName=".camera_activity.CameraActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="cg.ndokisteam.kitokotest.camera_activity.CameraActivity" />
         </activity>
     </application>
 
