@@ -228,6 +228,7 @@ public class CameraActivity extends AppCompatActivity {
             intent.putExtra("SEXE",sexe);
             intent.putExtra("IMAGE",images);
             startActivity(intent);
+             finish();
     }//fin
 
     //Compress de l'mage en Byte
