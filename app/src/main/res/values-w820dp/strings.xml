@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="titre_acceuil">KITOKO TESTER</string>
+    <string name="nom_de_l_utilisateur">Nom de l\'utilisateur</string>
 </resources>

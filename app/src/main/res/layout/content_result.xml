@@ -13,4 +13,60 @@
     tools:context="cg.ndokisteam.kitokotest.camera_activity.ResultActivity"
     tools:showIn="@layout/activity_result">
 
+    <TextView
+        android:text="@string/resultat_du_kitoko_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvTitreResultat"
+        android:gravity="center_horizontal"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="La vérification de votre Kitoko est términée"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="11dp"
+        android:id="@+id/tvResultat2"
+        android:layout_below="@+id/tvTitreResultat"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="7dp"
+        android:paddingTop="7dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/contenerInfo"
+        android:layout_below="@+id/tvResultat2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            app:civ_border_width="2dp"
+            app:civ_border_color="@color/colorPrimary"
+            android:src="@drawable/attach_camera"
+            android:id="@+id/photoResult"
+            android:layout_weight="1"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:hint="@string/nom_de_l_utilisateur"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:id="@+id/tvNomUserResultat"
+            android:layout_below="@+id/photoResult"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textAlignment="center" />
+
+    </RelativeLayout>
 </RelativeLayout>

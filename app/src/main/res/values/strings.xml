@@ -8,4 +8,6 @@
     <string name="femme">Femme</string>
     <string name="votre_photo">Votre photo</string>
     <string name="title_activity_result">Kitoto Resultat</string>
+    <string name="resultat_du_kitoko_test">Resultat du Kitoko Test</string>
+    <string name="nom_de_l_utilisateur">Nom de l\'utilisateur</string>
 </resources>

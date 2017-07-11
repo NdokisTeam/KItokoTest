@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.kosalgeek.android.photoutil.GalleryPhoto;
 import com.kosalgeek.android.photoutil.ImageLoader;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 
 import cg.ndokisteam.kitokotest.MainActivity;
@@ -47,8 +49,10 @@ public class CameraActivity extends AppCompatActivity {
     final int HOMME_ID = 0;
     final int FEMME_ID = 1;
 
+
     String nom;
     int sexe;
+    byte[] image;
 
     static final int REQUEST_CAMERA_IMAGE = 13323;
     final int GALLERY_REQUEST = 22131;
@@ -171,7 +175,6 @@ public class CameraActivity extends AppCompatActivity {
                 ivPhoto.setImageBitmap(photo);
                 try {
                     Bitmap bitmap = ImageLoader.init().from("data").requestSize(512, 512).getBitmap();
-                   // ivImage.setImageBitmap(bitmap);
                     ivPhoto.setImageBitmap(photo);
                 } catch (FileNotFoundException e) {
                     Toast.makeText(getApplicationContext(),
@@ -212,12 +215,16 @@ public class CameraActivity extends AppCompatActivity {
     private void sendData()
     {
         Intent intent = new Intent(CameraActivity.this,ResultActivity.class);
+        image = imageViewToByte(ivPhoto);
+
         if ( mGroup.getCheckedRadioButtonId() == R.id.radio1) //HOMME
         {
             nom = nomUser.getText().toString();
             sexe = HOMME_ID;
             intent.putExtra("NOM",nom);
             intent.putExtra("SEXE",sexe);
+            intent.putExtra("IMAGE",image);
+
             startActivity(intent);
 
         }
@@ -229,6 +236,17 @@ public class CameraActivity extends AppCompatActivity {
             intent.putExtra("SEXE",sexe);
             startActivity(intent);
         }
+    }
+
+    //Compress de l'mage en Byte
+
+    private byte[] imageViewToByte(ImageView image)
+    {
+        Bitmap bitmap = ((BitmapDrawable)image.getDrawable()).getBitmap();
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100,stream);
+        byte[] byteArray = stream.toByteArray();
+        return byteArray;
     }
 
 
