@@ -141,8 +141,6 @@ public class CameraActivity extends AppCompatActivity {
     public void init()
     {
         ivCamera= (ImageView) findViewById(R.id.ivCam);
-        ivGallerie = (ImageView) findViewById(R.id.ivGallerie);
-        ivPhoto = (CircleImageView) findViewById(R.id.ivImageUser);
         DialogueMedia = (ImageButton) findViewById(R.id.ibDialogueMedia);
 
         nomUser = (EditText) findViewById(R.id.edName);
