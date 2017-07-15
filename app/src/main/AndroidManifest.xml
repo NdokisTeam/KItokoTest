@@ -35,23 +35,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".camera_activity.CameraActivity"
-            android:label="@string/title_activity_camera"
-            android:parentActivityName=".MainActivity"
+            android:name=".camera_activity.ResultActivity"
+            android:label="@string/title_activity_result"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="cg.ndokisteam.kitokotest.MainActivity" />
-        </activity>
-        <activity
-            android:name=".camera_activity.ResultActivity"
-            android:label="@string/title_activity_result"
-            android:parentActivityName=".camera_activity.CameraActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="cg.ndokisteam.kitokotest.camera_activity.CameraActivity" />
         </activity>
     </application>
 
