@@ -1,14 +1,11 @@
 package cg.ndokisteam.kitokotest;
 
 import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
@@ -122,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
                 //MESSAGE POUR HOMME
                 images = imageViewToByte(ivPhoto);
                 nom = nomUser.getText().toString();
-                MyTaskTest myTaskTest;
 
                 if ( mGroup.getCheckedRadioButtonId() == R.id.radio1)
                 {
@@ -151,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     sendData(nom,images,kitokoMessage,validation,type);
 
                 }
+                finish();
             }
         });
     }
@@ -251,8 +248,14 @@ public class MainActivity extends AppCompatActivity {
     //Recuperation des donnees Utilisateur
     public void sendData(String n,byte[]images,String message,String validation,Long type)
     {
-        MyTaskTest myTaskTest = new MyTaskTest(MainActivity.this,type,images);
-        myTaskTest.execute("send_info",n,message,validation);
+        Intent intent = new Intent(MainActivity.this,ResultActivity.class);
+        String stringType = String.valueOf(type);
+        intent.putExtra("NOM",n);
+        intent.putExtra("MESSAGE",message);
+        intent.putExtra("VALIDATION",validation);
+        intent.putExtra("TYPE",stringType);
+        intent.putExtra("IMAGE",images);
+        startActivity(intent);
     }//fin
 
     //Compress de l'mage en Byte
@@ -285,84 +288,7 @@ public class MainActivity extends AppCompatActivity {
         return  oneMessage;
     }
 
-    //CREATION DE LA TACHE
 
-    static class  MyTaskTest extends AsyncTask<String,Integer,String>
-    {
-        ProgressDialog progressDialog;
-
-        Context context;
-        Long type;
-        byte[]images;
-        public MyTaskTest(Context context,Long type,byte[]img)
-        {
-            this.context = context;
-            this.type = type;
-            this.images = img;
-
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            int i = 0;
-            String method = params[0];
-            String nom = params[1];
-            String message = params[2];
-            String validation = params[3];
-
-                Intent intent = new Intent(this.context,ResultActivity.class);
-                intent.putExtra("NOM",nom);
-                intent.putExtra("MESSAGE",message);
-                intent.putExtra("VALIDATION",validation);
-                intent.putExtra("TYPE",this.type);
-                intent.putExtra("IMAGE",this.images);
-            synchronized (this)
-            {
-                while(i<10)
-                {
-                    try {
-                        wait(1000);
-                        i++;
-                        publishProgress(i);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-                this.context.startActivity(intent);
-
-            }
-           // return "Le scan de votre profile est terminé";
-            return  "Le scan de votre profile est terminé ";
-        }
-
-        @Override
-        protected void onPreExecute() {
-            progressDialog = new ProgressDialog(context);
-            progressDialog.setMax(10);
-            progressDialog.setMessage("Demarrage du scan de votre profile ");
-            progressDialog.setProgress(0);
-            progressDialog.setProgressStyle(progressDialog.STYLE_SPINNER);
-            progressDialog.show();
-         //   super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(String  result) {
-            //progressDialog.setTitle("Scannage du profile");
-            Toast.makeText(context,result,Toast.LENGTH_LONG).show();
-            //progressDialog.setMessage(result);
-            progressDialog.hide();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            int progress = values[0];
-            progressDialog.setProgress(progress);
-            progressDialog.setMessage("Scan du profile est en cours...");
-           // super.onProgressUpdate();
-        }
-    }
 
 }
 
