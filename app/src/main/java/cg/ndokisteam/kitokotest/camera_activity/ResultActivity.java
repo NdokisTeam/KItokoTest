@@ -21,7 +21,10 @@ public class ResultActivity extends AppCompatActivity {
 
     TextView titre,acceuil,nomUser;
     ImageView photo;
-    int  sexe;
+
+
+    String nom,message,validation;
+    Long typeMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +39,12 @@ public class ResultActivity extends AppCompatActivity {
         nomUser = (TextView) findViewById(R.id.tvNomUserResultat);
         photo = (ImageView) findViewById(R.id.photoResult);
 
-
         Intent intent = this.getIntent();
-        String nom = intent.getExtras().getString("NOM");
-       sexe = intent.getExtras().getInt("SEXE");
+         nom = intent.getExtras().getString("NOM");
+        message = intent.getExtras().getString("MESSAGE");
+        validation = intent.getExtras().getString("VALIDATION");
        byte[] image = intent.getExtras().getByteArray("IMAGE");
+        typeMessage = intent.getExtras().getLong("TYPE");
 
 
         nomUser.setText(nom.toUpperCase());
@@ -54,13 +58,9 @@ public class ResultActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (sexe == 0)
-                Snackbar.make(view, "Oza HOMME", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
 
-                if (sexe == 1)
-                    Snackbar.make(view, "Oza FEMME", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show();
+                Snackbar.make(view, message+" et "+validation, Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
