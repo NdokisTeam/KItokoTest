@@ -10,4 +10,18 @@
     <string name="title_activity_result">Kitoto Resultat</string>
     <string name="resultat_du_kitoko_test">Resultat du Kitoko Test</string>
     <string name="nom_de_l_utilisateur">Nom de l\'utilisateur</string>
+
+
+    <string name="slide_1_title">Bienvenue dans KitoKoTest!</string>
+    <string name="slide_1_desc">"Analyse ton visage et Remarque a quelle point tu es Mignon(ne) ou laid(e)!"</string>
+
+    <string name="slide_2_title">Mettre a jour vos Photos.</string>
+    <string name="slide_2_desc">Vous pouvez mettre a jour les photos analyser, dans votre gallery!</string>
+
+    <string name="slide_3_title">Prendre une Photo.</string>
+    <string name="slide_3_desc">"Vous pouvez inclure votre photo selfie prise dans la gallery ou capture afin d'analyser votre Beaute!"</string>
+
+    <string name="slide_4_title">Publier et Comparer.</string>
+    <string name="slide_4_desc">Vous pouvez partager et comparer vos resultats avec vos amis sur les Reseaux Sociaux!</string>
+    <string name="start_test">Analyse ton visage</string>
 </resources>
