@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
     {
         dialog = new Dialog(this);
         //titre
-        dialog.setTitle("Prendre une photo");
+        dialog.setTitle("Take a photo");
         //Content
         dialog.setContentView(R.layout.dialog_media);
         ic = (ImageView) dialog.findViewById(R.id.ivCam);
